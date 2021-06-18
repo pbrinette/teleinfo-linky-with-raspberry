@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # __author__ = "Sébastien Reuiller"
 # __licence__ = "Apache License 2.0"
@@ -36,7 +36,7 @@ logging.basicConfig(filename='/var/log/teleinfo/releve.log', level=logging.INFO,
 logging.info("Teleinfo starting..")
 
 # connexion a la base de données InfluxDB
-client = InfluxDBClient('localhost', 8086)
+client = InfluxDBClient('localhost', 8086) # , username='teleinfo', password='PWDteleinfo2021')
 db = "teleinfo"
 connected = False
 while not connected:
@@ -75,10 +75,10 @@ def add_measures(measures, time_measure):
 
 
 def main():
-    with serial.Serial(port='/dev/ttyS0', baudrate=1200, parity=serial.PARITY_NONE, stopbits=serial.STOPBITS_ONE,
+    with serial.Serial(port='/dev/ttyUSB0', baudrate=1200, parity=serial.PARITY_EVEN, stopbits=serial.STOPBITS_ONE,
                        bytesize=serial.SEVENBITS, timeout=1) as ser:
 
-        logging.info("Teleinfo is reading on /dev/ttyS0..")
+        logging.info("Teleinfo is reading on /dev/ttyUSB0..")
 
         trame = dict()
 

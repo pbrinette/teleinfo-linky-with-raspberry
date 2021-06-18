@@ -1,0 +1,16 @@
+# Teleinfo systemd service description
+# /etc/systemd/system/teleinfo.service
+#
+[Unit]
+Description=Teleinfo
+After=multi-user.target
+
+[Service]
+Type=simple
+Restart=always
+ExecStart=/usr/bin/python3 /home/pierrem/src/teleinfo-linky-with-raspberry/teleinfo.py
+User=pierrem
+Group=dialout
+
+[Install]
+WantedBy=multi-user.target
